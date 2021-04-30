@@ -5,6 +5,14 @@ using namespace std;
 int mat[2000][2000];
 int len;
 
+int min(int x, int y, int z)
+{
+    if (x < y)
+        return (x < z) ? x : z;
+    else
+        return (y < z) ? y : z;
+} // 3개의 정수 중 최소값 찾기.
+
 int main(){
     scanf("%d", &len);
     
