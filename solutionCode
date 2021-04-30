@@ -13,6 +13,41 @@ int min(int x, int y, int z)
         return (y < z) ? y : z;
 } // 3개의 정수 중 최소값 찾기.
 
+
+int minCost(int matrix[2000][2000], int len) {
+    int row = len-1;
+    int col = len-1;
+    
+    // 처음 시작을 (0,n)에서 시작하기 때문에 아래의 두 과정을 거친다.
+    
+    // for 1st row
+    // 1번째 행의 경로 비용을 더해준다
+    for (int i = col; i >= 1; i--) {
+        matrix[0][i-1] += matrix[0][i];
+    }
+
+    // for n_st column
+    // n번째 열의 경로 비용을 더해준다
+    for (int j = 0; j < col; j++) {
+        matrix[j+1][col] += matrix[j][col];
+    }
+
+    // for rest of the 2d matrix
+    // 왼쪽을 기준으로 위, 오른쪽, 오른쪽 위 대각선으로 올 수 있기 때문에 
+    // 아래와 같이 matrix값들을 설정했다.
+    for (int i = 1; i <= row; i++) {
+        for (int j = (col-1); j >= 0; j--) {
+            matrix[i][j] += min(matrix[i][j+1], matrix[i - 1][j], matrix[i - 1][j+1]);
+        }
+    }
+
+    // returning the value of the matrix[n][0]
+    return matrix[row][0];
+
+}
+// 출처: https://www.geeksforgeeks.org/min-cost-path-dp-6/
+
+
 int main(){
     scanf("%d", &len);
     
