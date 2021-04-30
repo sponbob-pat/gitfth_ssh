@@ -8,7 +8,7 @@ int len;
 int main(){
     scanf("%d", &len);
     
-    for (int i = 0; i <= len; i++) for (int j = 0; j <= len; j++) scanf("%d", &mat[i][j]);
+    for (int i = 0; i < len; i++) for (int j = 0; j < len; j++) scanf("%d", &mat[i][j]);
     
     // cin을 쓸 때는 입력하는 시간이 0.672s가 걸렸다.
     // 하지만, scanf를 쓰니까 0.260s가 걸렸다.
